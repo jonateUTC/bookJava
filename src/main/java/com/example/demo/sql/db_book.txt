@@ -1,0 +1,18 @@
+CREATE TABLE [dbo].[book](
+	[id_book] [numeric](19, 0) IDENTITY(1,1) NOT NULL,
+	[author_book] [varchar](150) NOT NULL,
+	[date_publish_book] [datetime] NULL,
+	[description_book] [varchar](300) NULL,
+	[name_book] [varchar](150) NOT NULL,
+	[number_book] [int] NULL,
+	[price_book] [float] NULL,
+PRIMARY KEY CLUSTERED 
+(
+	[id_book] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY],
+ CONSTRAINT [UK_kaofgybrnjm0lgi2rinmx8jjd] UNIQUE NONCLUSTERED 
+(
+	[name_book] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY]
+GO
