@@ -38,15 +38,25 @@ public class HomeControllers {
     BookRepository bookRepository;
     
     @GetMapping("/books")
-    Page<Book> getBooks(@RequestParam Optional<Integer> page, @RequestParam Optional<String> sortBy, @RequestParam Optional<Integer> size){
-        return bookRepository.findAll(
-                PageRequest.of(
-                    page.orElse(0),
-                    size.orElse(5),
-                    Sort.Direction.ASC, sortBy.orElse("id")
-                )               
-        );
-        
+    Page<Book> getBooks(@RequestParam Optional<Integer> page, @RequestParam Optional<String> sortBy, @RequestParam Optional<String> sorttype, @RequestParam Optional<Integer> size){
+        String order = sorttype.get();
+        if (order.equals("desc")){
+            return bookRepository.findAll(
+                    PageRequest.of(
+                            page.orElse(0),
+                            size.orElse(5),
+                            Sort.Direction.DESC, sortBy.orElse("id")
+                    )               
+            );
+        }else{
+            return bookRepository.findAll(
+                    PageRequest.of(
+                            page.orElse(0),
+                            size.orElse(5),
+                            Sort.Direction.ASC, sortBy.orElse("id")
+                    )               
+            );
+        }
     }
     /*@GetMapping("/books")
     public ResponseEntity<List<Book>> getAllBooks(@RequestParam(required = false) String name) {
